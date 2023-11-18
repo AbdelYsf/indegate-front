@@ -18,10 +18,14 @@
     "@mui/material": "^5.14.16",
     "@types/react": "^18.2.34",
     "@types/react-dom": "^18.2.14",
+    "axios": "^1.6.2",
     "framer-motion": "^10.16.4",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
-    "tailwind-scrollbar": "^3.0.5"
+    "react-query": "^3.39.3",
+    "react-router-dom": "^6.19.0",
+    "tailwind-scrollbar": "^3.0.5",
+    "zustand": "^4.4.6"
   },
   "devDependencies": {
     "@typescript-eslint/eslint-plugin": "^6.0.0",

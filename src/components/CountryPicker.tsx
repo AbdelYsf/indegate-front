@@ -5,16 +5,12 @@ import {SelectMenuOption} from "../utils/countrySelector/types.ts";
 
 
 interface Props {
-    defaultCountryCode: string
+    onChange: (val:SelectMenuOption)=>void
+    selectedCountry:SelectMenuOption
 }
 export const CountryPicker = (props:Props) => {
 
     const [isOpen, setIsOpen] = useState(false);
-    const [country, setCountry] = useState(props.defaultCountryCode);
-    const onChange = (val:string) =>{
-        setCountry(val)
-        console.log((COUNTRIES.find(option => option.value === val) as SelectMenuOption).title)
-    }
 
     return (
         <CountrySelector
@@ -22,8 +18,8 @@ export const CountryPicker = (props:Props) => {
             id={'countries'}
             open={isOpen}
             onToggle={() => setIsOpen(!isOpen)}
-            onChange={onChange}
-            selectedValue={COUNTRIES.find(option => option.value === country) as SelectMenuOption}
+            onChange={props.onChange}
+            selectedValue={COUNTRIES.find(option => option.value === props.selectedCountry.value) as SelectMenuOption}
         />
     );
 }

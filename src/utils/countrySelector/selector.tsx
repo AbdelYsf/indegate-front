@@ -8,7 +8,7 @@ export interface CountrySelectorProps {
   open: boolean;
   disabled?: boolean;
   onToggle: () => void;
-  onChange: (value: SelectMenuOption["value"]) => void;
+  onChange: (value: SelectMenuOption) => void;
   selectedValue: SelectMenuOption;
 }
 
@@ -136,7 +136,7 @@ export default function CountrySelector({
                         id="listbox-option-0"
                         role="option"
                         onClick={() => {
-                          onChange(value.value);
+                          onChange(value);
                           setQuery("");
                           onToggle();
                         }}

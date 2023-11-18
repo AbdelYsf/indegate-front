@@ -1,6 +1,6 @@
 import {AnimatePresence, motion} from "framer-motion";
 import {MutableRefObject, useEffect, useRef, useState} from "react";
-import {PRODUCTS} from "./products.ts";
+import {HsCodes} from "../types";
 
 export interface Props {
     id: string;
@@ -9,6 +9,7 @@ export interface Props {
     onToggle: () => void;
     onChange: (value: string) => void;
     selectedValue: string;
+    products: Array<HsCodes>;
 }
 
 const ProductSelector = ({
@@ -18,6 +19,8 @@ const ProductSelector = ({
                              onToggle,
                              onChange,
                              selectedValue,
+                             products
+
                          }: Props) => {
     const ref = useRef<HTMLDivElement>(null);
 
@@ -114,15 +117,15 @@ const ProductSelector = ({
                                     "max-h-64 scrollbar scrollbar-track-gray-100 scrollbar-thumb-gray-300 hover:scrollbar-thumb-gray-600 scrollbar-thumb-rounded scrollbar-thin overflow-y-scroll"
                                 }
                             >
-                                {PRODUCTS.filter((product) =>
-                                    product.toLowerCase().startsWith(query.toLowerCase())
+                                {products.filter((product) =>
+                                    (product.hscode as string).toLowerCase().startsWith(query.toLowerCase())
                                 ).length === 0 ? (
                                     <li className="text-gray-900 cursor-default select-none relative py-2 pl-3 pr-9">
                                         No products found
                                     </li>
                                 ) : (
-                                    PRODUCTS.filter((product) =>
-                                        product.toLowerCase().startsWith(query.toLowerCase())
+                                    products.filter((product) =>
+                                        (product.hscode as string).toLowerCase().startsWith(query.toLowerCase())
                                     ).map((value, index) => {
                                         return (
                                             <li
@@ -131,17 +134,18 @@ const ProductSelector = ({
                                                 id="listbox-option-0"
                                                 role="option"
                                                 onClick={() => {
-                                                    onChange(value);
+                                                    onChange(value.hscode);
                                                     setQuery("");
                                                     onToggle();
                                                 }}
                                             >
 
 
-                                                <span className="font-normal truncate">
-                          {value}
-                        </span>
-                                                {value === selectedValue ? (
+                                                <span>
+                                                    <span
+                                                        className="font-bold">{value.hscode}</span> - <span className="font-serif font-thin">{value.description}</span>
+                                                </span>
+                                                {value.hscode === selectedValue ? (
                                                     <span
                                                         className="text-blue-600 absolute inset-y-0 right-0 flex items-center pr-8">
                             <svg
