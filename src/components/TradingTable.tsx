@@ -13,11 +13,9 @@ export function TradingTable(props:Props) {
     }
 
     return (
-        <>
-
+        <div className="h-screen overflow-y-scroll">
             <div dangerouslySetInnerHTML={{ __html: props.data.data }} />
-
-        </>
+        </div>
 
     );
 }
