@@ -9,15 +9,15 @@ import {
 import {
     BuildingLibraryIcon,
     PresentationChartBarIcon,
-    PhotoIcon
 } from "@heroicons/react/24/solid";
 import {CiaCards} from "./CiaCards.tsx";
-import {CiaCarousel} from "./CiaCarousel.tsx";
+import {TradingTable} from "./TradingTable.tsx";
 
 
 interface Props {
-    images:Array<string>
+    tradingTable:string
     insights:object
+    isTradingTableLoading:boolean
 
 }
 export function ProductTabs(props:Props) {
@@ -32,10 +32,10 @@ export function ProductTabs(props:Props) {
                     </div>
                 </Tab>
 
-                <Tab value="country images">
+                <Tab value="Trading table">
                     <div className="flex items-center gap-2">
-                        {React.createElement(PhotoIcon, {className: "w-5 h-5"})}
-                        Gallery
+                        {React.createElement(PresentationChartBarIcon, {className: "w-5 h-5"})}
+                        Trading table
 
                     </div>
                 </Tab>
@@ -50,8 +50,8 @@ export function ProductTabs(props:Props) {
                 <TabPanel value="Country Insights">
                     <CiaCards insights={props.insights}/>
                 </TabPanel>
-                <TabPanel value="country images">
-                    <CiaCarousel images={props.images}></CiaCarousel>
+                <TabPanel value="Trading table">
+                    <TradingTable data={props.tradingTable} isLoading={props.isTradingTableLoading}></TradingTable>
                 </TabPanel>
                 <TabPanel value="Statistics">
                     Statistics

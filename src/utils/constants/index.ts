@@ -17,6 +17,7 @@ export const ENDPOINTS = {
     HSCODES: '/v0/hscodes/',
     COUNTRY_IMAGES: '/v0/country_images',
     COUNTRY_INSIGHTS: '/v0/country_insights',
+    TRADING_TABLE: '/v0/trading_table',
 };
 
 
