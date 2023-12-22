@@ -12,7 +12,7 @@ type DestinationCountryStoreType = {
 
 export const useDestinationCountry = create<DestinationCountryStoreType>(
     (set)=>({
-        destinationCountry:{value: 'AU', title: 'Australia'},
+        destinationCountry:{value: 'MA', title: 'Morocco'},
         setDestinationCountry:(val:SelectMenuOption)=> set({destinationCountry:val})
 
 }));

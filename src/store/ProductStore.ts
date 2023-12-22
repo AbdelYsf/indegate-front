@@ -12,7 +12,7 @@ type ProductStoreType = {
 
 export const useProduct = create<ProductStoreType>(
     (set)=>({
-        product:'0000001234',
+        product:'010130',
         setProduct:(val:string)=> set({product:val}),
         isSet:false,
         setIsSet:() => set({isSet:true})

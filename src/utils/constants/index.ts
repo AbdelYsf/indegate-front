@@ -18,6 +18,7 @@ export const ENDPOINTS = {
     COUNTRY_IMAGES: '/v0/country_images',
     COUNTRY_INSIGHTS: '/v0/country_insights',
     TRADING_TABLE: '/v0/trading_table',
+    IMPORT_REQUIREMENTS: '/v0/import_requirements',
 };
 
 

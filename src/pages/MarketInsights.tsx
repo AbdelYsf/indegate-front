@@ -7,6 +7,7 @@ import {useEffect} from "react";
 import {useCountryInsights} from "../hooks/useCountryInsights.ts";
 import {useDestinationCountry} from "../store/DestinationCountryStore.ts";
 import {useTradingTable} from "../hooks/useTradingTable.ts";
+import {useImportRequirements} from "../hooks/useImportRequirements.ts";
 
 export const MarketInsights = () => {
     const navigate = useNavigate();
@@ -33,6 +34,12 @@ export const MarketInsights = () => {
         product: product
     })
 
+    const {importData , isImportLoading} = useImportRequirements({
+        exporting_country:exportingCountry.title,
+        destination_country: destinationCountry.title,
+        product: product
+    })
+
 
     console.log(data)
     useEffect(()=>{
@@ -45,7 +52,8 @@ export const MarketInsights = () => {
     return(
         <>
             <AppNavbar/>
-            <ProductTabs tradingTable={data} isTradingTableLoading={isLoading} insights={insights.data}/>
+            <ProductTabs tradingTable={data} isTradingTableLoading={isLoading} insights={insights.data}
+                         importRequirements={importData} isImportRequirementsLoading={isImportLoading}/>
 
         </>
     )

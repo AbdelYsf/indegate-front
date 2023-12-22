@@ -12,12 +12,16 @@ import {
 } from "@heroicons/react/24/solid";
 import {CiaCards} from "./CiaCards.tsx";
 import {TradingTable} from "./TradingTable.tsx";
+import {ImportRequirements} from "./ImportRequirements.tsx";
 
 
 interface Props {
     tradingTable:string
+    importRequirements:string
     insights:object
     isTradingTableLoading:boolean
+    isImportRequirementsLoading:boolean
+
 
 }
 export function ProductTabs(props:Props) {
@@ -39,10 +43,10 @@ export function ProductTabs(props:Props) {
 
                     </div>
                 </Tab>
-                <Tab value="Statistics">
+                <Tab value="Import requirements">
                     <div className="flex items-center gap-2">
                         {React.createElement(PresentationChartBarIcon, {className: "w-5 h-5"})}
-                        Statistics
+                        Import requirements
                     </div>
                 </Tab>
             </TabsHeader>
@@ -51,10 +55,10 @@ export function ProductTabs(props:Props) {
                     <CiaCards insights={props.insights}/>
                 </TabPanel>
                 <TabPanel value="Trading table">
-                    <TradingTable data={props.tradingTable} isLoading={props.isTradingTableLoading}></TradingTable>
+                    <TradingTable data={props.tradingTable} isLoading={props.isTradingTableLoading}/>
                 </TabPanel>
-                <TabPanel value="Statistics">
-                    Statistics
+                <TabPanel value="Import requirements">
+                    <ImportRequirements data={props.importRequirements} isLoading={props.isImportRequirementsLoading}/>
                 </TabPanel>
             </TabsBody>
 

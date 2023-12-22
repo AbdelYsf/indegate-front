@@ -10,7 +10,7 @@ type ExportingCountryStoreType = {
 
 export const useExportingCountry = create<ExportingCountryStoreType>(
     (set)=>({
-        exportingCountry:{value:'CA', title: 'Canada'},
+        exportingCountry:{value:'CN', title: 'China'},
         setExportingCountry:(val:SelectMenuOption)=> set({exportingCountry:val})
 
 }));
