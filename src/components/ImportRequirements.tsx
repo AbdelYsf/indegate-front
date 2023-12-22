@@ -1,3 +1,4 @@
+import {CustomSpinner} from "./Loader.tsx";
 
 interface Props {
     data:any
@@ -8,6 +9,7 @@ export function ImportRequirements(props:Props) {
 
     if (props.isLoading) {
         return <div className="flex items-center justify-center h-screen">
+            <CustomSpinner/>
                     <p className="text-xl font-bold">Please wait...</p>
               </div>
     }
