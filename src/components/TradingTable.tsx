@@ -10,7 +10,7 @@ export function TradingTable(props:Props) {
     if (props.isLoading) {
         return <div className="flex items-center justify-center h-screen">
                     <CustomSpinner/>
-                    <p className="text-xl font-bold">Please wait...</p>
+                    <div className="text-xl font-bold">Please wait...</div>
               </div>
     }
 
