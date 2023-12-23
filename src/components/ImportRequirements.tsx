@@ -8,10 +8,7 @@ interface Props {
 export function ImportRequirements(props:Props) {
 
     if (props.isLoading) {
-        return <div className="flex items-center justify-center h-screen">
-            <CustomSpinner/>
-
-              </div>
+        return   <CustomSpinner/>
     }
 
     return (
