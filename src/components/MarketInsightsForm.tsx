@@ -12,6 +12,8 @@ import {useExportingCountry} from "../store/ExportingCountryStore.ts";
 import {useDestinationCountry} from "../store/DestinationCountryStore.ts";
 import {useState} from "react";
 import {FullScreenLoader} from "./FullScreenLoader.tsx";
+import {SectorsPicker} from "./SectorPicker.tsx";
+import {Sectors} from "../utils/sectorSelector/sectors.ts";
 
 
 export const MarketInsightsForm = () => {
@@ -35,6 +37,8 @@ export const MarketInsightsForm = () => {
     const {product, setProduct, setIsSet} = useProduct()
     const {exportingCountry, setExportingCountry} = useExportingCountry()
     const {destinationCountry, setDestinationCountry} = useDestinationCountry()
+
+    const [sector, setSector] = useState("sector 1")
 
 
     return (
@@ -66,6 +70,11 @@ export const MarketInsightsForm = () => {
                             DESTINATION COUNTRY
                         </Typography>
                         <CountryPicker selectedCountry={destinationCountry} onChange={setDestinationCountry}/>
+
+                        <Typography variant="h6" color="blue-gray" className="-mb-3 mx-auto">
+                            SECTOR
+                        </Typography>
+                        <SectorsPicker selectedSector={sector} onSectorChange={setSector} sectors={Sectors}/>
                     </div>
 
                     <Button

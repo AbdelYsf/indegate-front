@@ -19,7 +19,7 @@ export const MarketInsights = () => {
     //console.log(exportingCountry.title)
 
     const {insights} = useCountryInsights({
-        country_name:exportingCountry.title
+        country_name:destinationCountry.title
     })
     // console.log(data.data)
     // console.log(insights.data)

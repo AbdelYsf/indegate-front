@@ -9,6 +9,8 @@ import {
 import {
     BuildingLibraryIcon,
     PresentationChartBarIcon,
+    LightBulbIcon,
+    DocumentTextIcon,
 } from "@heroicons/react/24/solid";
 import {CiaCards} from "./CiaCards.tsx";
 import {TradingTable} from "./TradingTable.tsx";
@@ -43,9 +45,16 @@ export function ProductTabs(props:Props) {
 
                     </div>
                 </Tab>
+                <Tab value="Trading insights">
+                    <div className="flex items-center gap-2">
+                        {React.createElement(LightBulbIcon, {className: "w-5 h-5"})}
+                        Trading insights
+
+                    </div>
+                </Tab>
                 <Tab value="Import requirements">
                     <div className="flex items-center gap-2">
-                        {React.createElement(PresentationChartBarIcon, {className: "w-5 h-5"})}
+                        {React.createElement(DocumentTextIcon, {className: "w-5 h-5"})}
                         Import requirements
                     </div>
                 </Tab>
@@ -56,6 +65,9 @@ export function ProductTabs(props:Props) {
                 </TabPanel>
                 <TabPanel value="Trading table">
                     <TradingTable data={props.tradingTable} isLoading={props.isTradingTableLoading}/>
+                </TabPanel>
+                <TabPanel value="Trading insights">
+                    Trading insights
                 </TabPanel>
                 <TabPanel value="Import requirements">
                     <ImportRequirements data={props.importRequirements} isLoading={props.isImportRequirementsLoading}/>
