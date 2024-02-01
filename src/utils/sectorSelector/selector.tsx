@@ -142,7 +142,7 @@ const SectorSelector = ({
 
                                                 <span>
                                                     <span
-                                                        className="font-bold">{value}</span> - <span className="font-serif font-thin">{value}</span>
+                                                        className="font-bold">{value}</span>
                                                 </span>
                                                 {value === selectedValue ? (
                                                     <span
