@@ -38,7 +38,7 @@ export const MarketInsightsForm = () => {
     const {exportingCountry, setExportingCountry} = useExportingCountry()
     const {destinationCountry, setDestinationCountry} = useDestinationCountry()
 
-    const [sector, setSector] = useState("sector 1")
+    const [sector, setSector] = useState("Nourriture")
 
 
     return (
