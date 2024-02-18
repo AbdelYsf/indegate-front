@@ -143,7 +143,8 @@ const ProductSelector = ({
 
                                                 <span>
                                                     <span
-                                                        className="font-bold">{value.hscode}</span> - <span className="font-serif font-thin">{value.description}</span>
+                                                        className="font-bold">{value.hscode}</span> - <span
+                                                    className="font-serif font-thin">{value.description}</span>
                                                 </span>
                                                 {value.hscode === selectedValue ? (
                                                     <span
