@@ -36,7 +36,7 @@ export const MarketInsightsForm = () => {
     }
 
 
-    const {product, setProduct, setIsSet} = useProduct()
+    const {product, setProduct, setIsSet, } = useProduct()
     const {exportingCountry, setExportingCountry} = useExportingCountry()
     const {destinationCountry, setDestinationCountry} = useDestinationCountry()
 
@@ -72,7 +72,7 @@ export const MarketInsightsForm = () => {
                         <Typography variant="h6" color="blue-gray" className="-mb-3 mx-auto">
                             PRODUCT
                         </Typography>
-                        <ProductsPicker products={data.data} onProductChange={setProduct} selectedProduct={product}/>
+                        <ProductsPicker products={data.data} onProductChange={setProduct} selectedProduct={product} isLoading={isHsCodesLoading}/>
 
                         <Typography variant="h6" color="blue-gray" className="-mb-3 mx-auto">
                             DESTINATION COUNTRY
