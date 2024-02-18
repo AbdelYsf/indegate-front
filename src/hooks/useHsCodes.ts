@@ -6,7 +6,8 @@ import {HsCodes} from "../utils/types";
 
 const useHsCodes = ( config = {}) => {
     const {
-        data = Array<HsCodes>
+        data = Array<HsCodes>,
+        isLoading = true
            ,
     } = useQuery({
         queryKey: ['hscodes'],
@@ -19,6 +20,6 @@ const useHsCodes = ( config = {}) => {
         ...config,
     });
 
-    return {data: data as any};
+    return {data: data as any, isLoading };
 };
 export {useHsCodes};

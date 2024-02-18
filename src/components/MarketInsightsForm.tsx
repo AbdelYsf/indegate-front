@@ -21,7 +21,7 @@ import {subSectors} from "../utils/subSectorSelector/subSectors.ts";
 export const MarketInsightsForm = () => {
     const [isLoading, setIsLoading] = useState(false)
 
-    const {data} = useHsCodes()
+    const {data, isLoading:isHsCodesLoading} = useHsCodes()
 
 
     const navigate = useNavigate();

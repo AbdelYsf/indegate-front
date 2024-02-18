@@ -7,6 +7,7 @@ interface Props {
     products: Array<HsCodes>
     onProductChange: (val:string)=> void
     selectedProduct: string
+    isLoading: boolean
 }
 export const ProductsPicker = (props:Props) => {
 
@@ -21,6 +22,7 @@ export const ProductsPicker = (props:Props) => {
             onToggle={() => setIsOpen(!isOpen)}
             onChange={props.onProductChange}
             selectedValue={props.selectedProduct}
+            disabled={props.isLoading}
         />
     );
 }
