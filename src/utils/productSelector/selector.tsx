@@ -1,6 +1,7 @@
-import {AnimatePresence, motion} from "framer-motion";
-import {MutableRefObject, useEffect, useRef, useState} from "react";
-import {HsCodes} from "../types";
+import { AnimatePresence, motion } from "framer-motion";
+import { MutableRefObject, useEffect, useRef, useState } from "react";
+import { HsCodes } from "../types";
+import { FixedSizeList } from "react-window";
 
 export interface Props {
     id: string;
@@ -13,7 +14,6 @@ export interface Props {
 }
 
 const ProductSelector = ({
-                             id,
                              open,
                              disabled = false,
                              onToggle,
@@ -45,6 +45,12 @@ const ProductSelector = ({
     }, [ref]);
 
     const [query, setQuery] = useState("");
+
+    const handleChange = (value: string) => {
+        onChange(value);
+        setQuery("");
+        onToggle();
+    };
 
     return (
         <div ref={ref}>
@@ -106,6 +112,7 @@ const ProductSelector = ({
                                         autoComplete={"off"}
                                         className="focus:ring-blue-500 focus:border-blue-500 block w-full sm:text-sm border-gray-300 rounded-md p-3"
                                         placeholder={"Search a product"}
+                                        value={query} // value should be controlled
                                         onChange={(e) => setQuery(e.target.value)}
                                     />
                                 </li>
@@ -117,57 +124,50 @@ const ProductSelector = ({
                                     "max-h-64 scrollbar scrollbar-track-gray-100 scrollbar-thumb-gray-300 hover:scrollbar-thumb-gray-600 scrollbar-thumb-rounded scrollbar-thin overflow-y-scroll"
                                 }
                             >
-                                {products.filter((product) =>
-                                    (product.hscode as string).toLowerCase().startsWith(query.toLowerCase())
-                                ).length === 0 ? (
-                                    <li className="text-gray-900 cursor-default select-none relative py-2 pl-3 pr-9">
-                                        No products found
-                                    </li>
-                                ) : (
-                                    products.filter((product) =>
+                                <FixedSizeList
+                                    height={300}
+                                    width={"100%"}
+                                    itemSize={100}
+                                    itemCount={products.filter((product) =>
                                         (product.hscode as string).toLowerCase().startsWith(query.toLowerCase())
-                                    ).map((value, index) => {
+                                    ).length}
+                                >
+                                    {({index, style}) => {
+                                        const filteredProducts = products.filter((product) =>
+                                            (product.hscode as string).toLowerCase().startsWith(query.toLowerCase())
+                                        );
+                                        const product = filteredProducts[index];
                                         return (
                                             <li
-                                                key={`${id}-${index}`}
+                                                key={index}
+                                                style={style}
                                                 className="text-gray-900 cursor-default select-none relative py-2 pl-3 pr-9 flex items-center hover:bg-gray-50 transition"
-                                                id="listbox-option-0"
+                                                onClick={() => handleChange(product.hscode)}
                                                 role="option"
-                                                onClick={() => {
-                                                    onChange(value.hscode);
-                                                    setQuery("");
-                                                    onToggle();
-                                                }}
                                             >
-
-
-                                                <span>
-                                                    <span
-                                                        className="font-bold">{value.hscode}</span> - <span
-                                                    className="font-serif font-thin">{value.description}</span>
-                                                </span>
-                                                {value.hscode === selectedValue ? (
-                                                    <span
-                                                        className="text-blue-600 absolute inset-y-0 right-0 flex items-center pr-8">
-                            <svg
-                                className="h-5 w-5"
-                                xmlns="http://www.w3.org/2000/svg"
-                                viewBox="0 0 20 20"
-                                fill="currentColor"
-                                aria-hidden="true"
-                            >
-                              <path
-                                  fillRule="evenodd"
-                                  d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"
-                                  clipRule="evenodd"
-                              />
-                            </svg>
-                          </span>
-                                                ) : null}
+                                                <span className="font-bold">{product.hscode}</span> - <span
+                                                className="font-normal text-sm ">{product.description}</span>
+                                                {product.hscode === selectedValue && (
+                                                    <span className="text-blue-600 absolute inset-y-0 right-0 flex items-center pr-8">
+                                                        <svg
+                                                            className="h-5 w-5"
+                                                            xmlns="http://www.w3.org/2000/svg"
+                                                            viewBox="0 0 20 20"
+                                                            fill="currentColor"
+                                                            aria-hidden="true"
+                                                        >
+                                                            <path
+                                                                fillRule="evenodd"
+                                                                d="M16.707 5.293a1 1 0 011.414 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"
+                                                                clipRule="evenodd"
+                                                            />
+                                                        </svg>
+                                                    </span>
+                                                )}
                                             </li>
                                         );
-                                    })
-                                )}
+                                    }}
+                                </FixedSizeList>
                             </div>
                         </motion.ul>
                     )}
@@ -176,6 +176,5 @@ const ProductSelector = ({
         </div>
     );
 }
-
 
 export default ProductSelector;

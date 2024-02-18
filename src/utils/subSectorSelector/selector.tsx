@@ -11,7 +11,7 @@ export interface Props {
     sectors: Array<string>;
 }
 
-const SectorSelector = ({
+const SubSectorSelector = ({
                              id,
                              open,
                              disabled = false,
@@ -176,4 +176,4 @@ const SectorSelector = ({
 }
 
 
-export default SectorSelector;
+export default SubSectorSelector;

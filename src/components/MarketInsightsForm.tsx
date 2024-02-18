@@ -14,6 +14,8 @@ import {useState} from "react";
 import {FullScreenLoader} from "./FullScreenLoader.tsx";
 import {SectorsPicker} from "./SectorPicker.tsx";
 import {Sectors} from "../utils/sectorSelector/sectors.ts";
+import {SubSectorsPicker} from "./SubSectorPicker.tsx";
+import {subSectors} from "../utils/subSectorSelector/subSectors.ts";
 
 
 export const MarketInsightsForm = () => {
@@ -38,7 +40,13 @@ export const MarketInsightsForm = () => {
     const {exportingCountry, setExportingCountry} = useExportingCountry()
     const {destinationCountry, setDestinationCountry} = useDestinationCountry()
 
-    const [sector, setSector] = useState("Nourriture")
+    const [sector, setSector] = useState("AGROALIMENTAIRE")
+    const [subSector, setSubSector] = useState("Nourriture")
+
+    const onSectorChanged = (sector:string)=>{
+        setSector(sector)
+        setSubSector(subSectors[sector][0])
+    }
 
 
     return (
@@ -74,7 +82,8 @@ export const MarketInsightsForm = () => {
                         <Typography variant="h6" color="blue-gray" className="-mb-3 mx-auto">
                             SECTOR
                         </Typography>
-                        <SectorsPicker selectedSector={sector} onSectorChange={setSector} sectors={Sectors}/>
+                        <SectorsPicker selectedSector={sector} onSectorChange={onSectorChanged} sectors={Sectors}/>
+                        <SubSectorsPicker selectedSubSector={subSector} onSubSectorChange={setSubSector} SubSectors={subSectors[sector]}/>
                     </div>
 
                     <Button
