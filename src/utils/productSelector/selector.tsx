@@ -1,5 +1,5 @@
 import { AnimatePresence, motion } from "framer-motion";
-import { MutableRefObject, useEffect, useRef, useState } from "react";
+import {CSSProperties, MutableRefObject, useEffect, useRef, useState} from "react";
 import { HsCodes } from "../types";
 import { FixedSizeList } from "react-window";
 
@@ -132,7 +132,7 @@ const ProductSelector = ({
                                         (product.hscode as string).toLowerCase().startsWith(query.toLowerCase())
                                     ).length}
                                 >
-                                    {({index, style}) => {
+                                    {({index, style}: {index: number, style: CSSProperties}) => {
                                         const filteredProducts = products.filter((product) =>
                                             (product.hscode as string).toLowerCase().startsWith(query.toLowerCase())
                                         );
